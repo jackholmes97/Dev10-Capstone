@@ -57,7 +57,7 @@ A web design system made for developers of all skill levels that values, simplic
 #### Post-condition: 
 >Nothing too restrictive but obviously the USER must become a MEMBER (create an account) to access the community page.
 
-### Edit a Run
+### Edit a Submission
 <em>Editing a community design submission.</em>
 
 #### Precondition: 
@@ -66,8 +66,8 @@ A web design system made for developers of all skill levels that values, simplic
 #### Post-condition: 
 >If the USER is logged in as a MEMBER, they can edit their own submissions but no one else's. If the USER is logged in as an ADMIN, they can edit any submission.
 
-### Cancel a Run
-<em>Can only cancel a run in the future.</em>
+### Delete a Submission
+<em>Deleting a community design submission.</em>
 
 #### Precondition: 
 >USER must be logged in with the MEMBER or ADMIN role. MEMBERS must have contributed at least one submission.
