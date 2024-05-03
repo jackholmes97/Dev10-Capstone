@@ -63,3 +63,26 @@ create table app_user_role (
         foreign key (app_role_id)
         references app_role(app_role_id)
 );
+
+insert into app_role (`name`) values
+    ('MEMBER'),
+    ('ADMIN');
+
+insert into elm_type (elm_type_name)
+values  ('Alert'),
+        ('Button'),
+        ('Input Field'),
+        ('Dropdown'),
+        ('Range'),
+        ('Checkbox'),
+        ('Toggle');
+
+insert into app_user (username, password_hash, enabled)
+    values
+    ('member@member.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 1),
+    ('admin@admin.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 1);
+
+insert into app_user_role
+    values
+    (1, 2),
+    (2, 1);

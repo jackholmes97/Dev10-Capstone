@@ -1,6 +1,8 @@
 package learn.haring.controllers;
 
+import learn.haring.domain.Result;
 import learn.haring.models.AppUser;
+
 import learn.haring.security.AppUserService;
 import learn.haring.security.JwtConverter;
 import org.springframework.http.HttpStatus;
@@ -62,7 +64,7 @@ public class AuthController {
         }
 
         HashMap<String, Integer> map = new HashMap<>();
-        map.put("appUserId", result.getPayload().getUserId());
+        map.put("appUserId", result.getPayload().getAppUserId());
 
         return new ResponseEntity<>(map, HttpStatus.CREATED);
 
