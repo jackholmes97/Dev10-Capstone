@@ -29,6 +29,8 @@ public class SecurityConfig {
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers("/create_account").permitAll()
                 .antMatchers("/refresh_token").authenticated()
+                .antMatchers("/api/submissions", "/api/submissions/*", "/api/submissions/**").permitAll()
+                .antMatchers("/api/comments", "/api/comments/*", "/api/comments/**").permitAll()
                 // TODO Add antMatchers here to configure access to specific API endpoints
                 .antMatchers("/**").denyAll()
                 .anyRequest().authenticated()
