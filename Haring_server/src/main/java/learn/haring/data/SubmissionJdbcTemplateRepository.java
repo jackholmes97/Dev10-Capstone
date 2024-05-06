@@ -52,15 +52,21 @@ public class SubmissionJdbcTemplateRepository implements SubmissionRepository {
     public List<Submission> findAll() {
         final String sql = """
                             select
-                                submission_id,
-                                submission_title,
-                                submission_description,
-                                submission_demo,
-                                submission_html,
-                                submission_css,
-                                elm_type_id,
-                                app_user_id
-                            from submission
+                                s.submission_id,
+                                s.submission_title,
+                                s.submission_description,
+                                s.submission_demo,
+                                s.submission_html,
+                                s.submission_css,
+                                et.elm_type_id,
+                                et.elm_type_name,
+                                au.app_user_id,
+                                au.username,
+                                au.password_hash,
+                                au.enabled
+                            from submission s
+                            inner join elm_type et on s.elm_type_id = et.elm_type_id
+                            inner join app_user au on s.app_user_id = au.app_user_id
                             """;
         return jdbcTemplate.query(sql, new SubmissionMapper());
     }
