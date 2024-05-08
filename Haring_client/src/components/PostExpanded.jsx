@@ -1,10 +1,30 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ClearIcon from '@mui/icons-material/Clear';
 import { Divider } from "@mui/material";
-export default function PostExpanded({user, setUser, sub, setSubmissions}) {
+import { useNavigate } from "react-router-dom";
+export default function PostExpanded({user, setUser, sub, setSubmissions, posterId, authorities}) {
+    const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState("");
+    const navigate = useNavigate();
+    console.log(posterId);
+    console.log(authorities);
     const handleBack = () => {
-        window.history.back();
+        navigate("/community");
+    }
+
+    useEffect(() => {
+        fetch(`http://localhost:8080/api/comments/submission/${sub.submissionId}`)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            setComments(data);
+        });
+    }, []);
+
+    function handleEdit(e) {
+        setNewComment(e.target.value);
+        console.log(newComment);
     }
 
     function handleDelete(e) {
@@ -17,12 +37,38 @@ export default function PostExpanded({user, setUser, sub, setSubmissions}) {
         })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data);
             const newSubs = [...submissions];
             const index = newSubs.indexOf(sub);
             newSubs.splice(index, 1);
             setSubmissions(newSubs);
-            window.history.back();
+            navigate("/community");
+        });
+    }
+    function handleComment(e) {
+        e.preventDefault();
+        const postComm = {
+            commentText: newComment,
+            submission: {
+                submissionId: sub.submissionId
+            },
+            appUser: {
+                appUserId: posterId,
+                username: user,
+                authorities: authorities
+            }
+        }
+        console.log(postComm);
+        fetch(`http://localhost:8080/api/comments`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(postComm),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            setComments([...comments, data]);
         });
     }
     return (
@@ -55,19 +101,32 @@ export default function PostExpanded({user, setUser, sub, setSubmissions}) {
                     <label className="snippet-label">HTML</label>
                     <pre className="code-container">
                         <code>
-                            {sub.submissionCss}
-                        </code>
-                    </pre>
-                </div>
-                <Divider orientation="vertical" flexItem sx={{margin: "20px", height: "59%", backgroundColor: "black"}}/>
-                <div>
-                    <label className="snippet-label">CSS</label>
-                    <pre className="code-container">
-                        <code>
                             {sub.submissionHtml}
                         </code>
                     </pre>
                 </div>
+                <Divider orientation="vertical" flexItem sx={{margin: "20px", height: "105%", backgroundColor: "black"}}/>
+                <div>
+                    <label className="snippet-label">CSS</label>
+                    <pre className="code-container">
+                        <code>
+                            {sub.submissionCss}
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            <div className="comment-section">
+                <h1>Comments ({comments.length})</h1>
+                <div className="comments">
+                    {comments.map((comment) => (
+                        <div key={comment.commentId} className="comment">
+                            <p>{comment.commentText}</p>
+                            <p>By: {comment.appUser.username}</p>
+                        </div>
+                    ))}
+                </div>
+                <input type="text" value={newComment} onChange={handleEdit} placeholder="Add a comment."/>
+                <button onClick={handleComment}>Submit</button>   
             </div>
         </div>
     );

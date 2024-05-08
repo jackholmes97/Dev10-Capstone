@@ -20,7 +20,7 @@ public class CommentJdbcTemplateRepository implements CommentRepository {
     @Override
     public Comment findById(int id) {
         final String sql = """
-                select comment_id, submission_id, user_id, comment_text
+                select comment_id, submission_id, app_user_id, comment_text
                     from comment
                 where comment_id = ?;
                 """;
@@ -31,23 +31,25 @@ public class CommentJdbcTemplateRepository implements CommentRepository {
     @Override
     public List<Comment> findBySubmissionId(int submissionId) {
         final String sql = """
-                select comment_id, submission_id, user_id, comment_text
-                from comment
-                where submission_id = ?;
-                """;
+        select c.comment_id, c.submission_id, c.app_user_id, c.comment_text, s.submission_id, s.submission_title, s.submission_description, s.submission_demo, s.submission_html, s.submission_css, e.elm_type_id, e.elm_type_name, a.app_user_id, a.username, a.password_hash, a.enabled
+        from comment c
+        join submission s on c.submission_id = s.submission_id
+        join app_user a on c.app_user_id = a.app_user_id
+        join elm_type e on s.elm_type_id = e.elm_type_id
+        where c.submission_id = ?;
+        """;
         return jdbcTemplate.query(sql, new CommentMapper(), submissionId);
     }
-
     @Override
     public List<Comment> findAll() {
-        final String sql = "select comment_id, submission_id, user_id, comment_text from comment;";
+        final String sql = "select comment_id, submission_id, app_user_id, comment_text from comment;";
         return jdbcTemplate.query(sql, new CommentMapper());
     }
 
     @Override
     public Comment add(Comment comment) {
         final String sql = """
-                insert into comment (submission_id, user_id, comment_text)
+                insert into comment (submission_id, app_user_id, comment_text)
                 values (?, ?, ?);
                 """;
         KeyHolder keyHolder = new GeneratedKeyHolder();

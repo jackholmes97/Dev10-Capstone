@@ -1,5 +1,5 @@
 package learn.haring.data;
-
+import learn.haring.data.AppUserRepository;
 import learn.haring.data.mappers.AppUserMapper;
 import learn.haring.models.AppUser;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,6 +15,7 @@ import java.util.List;
 
 @Repository
 public class AppUserJdbcTemplateRepository implements AppUserRepository {
+
     private final JdbcTemplate jdbcTemplate;
 
     public AppUserJdbcTemplateRepository(JdbcTemplate jdbcTemplate) {
@@ -38,6 +39,7 @@ public class AppUserJdbcTemplateRepository implements AppUserRepository {
     @Override
     @Transactional
     public AppUser create(AppUser user) {
+
         final String sql = "insert into app_user (username, password_hash) values (?, ?);";
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
@@ -62,8 +64,14 @@ public class AppUserJdbcTemplateRepository implements AppUserRepository {
     @Override
     @Transactional
     public boolean update(AppUser user) {
-        final String sql = "update app_user set username = ?, password_hash = ? where app_user_id = ?;";
-        boolean updated = jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getAppUserId()) > 0;
+
+        final String sql = "update app_user set "
+                + "username = ?, "
+                + "enabled = ? "
+                + "where app_user_id = ?";
+
+        boolean updated = jdbcTemplate.update(sql,
+                user.getUsername(), user.isEnabled(), user.getAppUserId()) > 0;
 
         if (updated) {
             updateRoles(user);

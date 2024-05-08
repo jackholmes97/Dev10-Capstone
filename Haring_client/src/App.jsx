@@ -5,12 +5,15 @@ import Community from './components/Community'
 import LoginNav from './components/LoginNav'
 import Defaults from './components/Defaults'
 import PostExpanded from './components/PostExpanded'
+import SubmissionForm from './components/SubmissionForm'
 import './App.css'
 import { Routes, Route, } from 'react-router-dom'
 import LoginForm from './components/LoginForm'
 
 function App() {
   const [user, setUser] = useState('')
+  const [posterId, setPosterId] = useState("");
+  const [authorities, setAuthorities] = useState([]);
   const [submissions, setSubmissions] = useState([]);
   useEffect(() => {
     fetch("http://localhost:8080/api/submissions")
@@ -32,11 +35,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home user={user} />} />
         <Route path="/about" element={<About />} />
-        <Route path="/community" element={<Community setUser={setUser} submissions={submissions} setSubmissions={setSubmissions}/>} />
+        <Route path="/community" element={<Community setUser={setUser} submissions={submissions} setSubmissions={setSubmissions} posterId={posterId} setPosterId={setPosterId} authorities={authorities} setAuthorities={setAuthorities}/>} />
         <Route path="/templates" element={<Defaults />} />
         <Route path="/login-form" element={<LoginForm user={user} setUser={setUser} />} />
+        <Route path="/new-submission" element={<SubmissionForm user={user} setSubmissions={setSubmissions} submissions={submissions}/>} />
         {submissions.map((submission) => (
-          <Route key={submission.submissionId} path={"/submission/" + submission.submissionId} element={<PostExpanded user={user} setUser={setUser} sub={submission} setSubmissions={setSubmissions} />} />
+          <Route key={submission.submissionId} path={"/submission/" + submission.submissionId} element={<PostExpanded user={user} setUser={setUser} sub={submission} setSubmissions={setSubmissions} posterId={posterId} authorities={authorities}/>} />
         ))}
       </Routes>
     </>

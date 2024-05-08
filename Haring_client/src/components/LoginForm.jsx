@@ -6,7 +6,7 @@ export default function LoginForm({user, setUser}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    console.log(user);
+    
     
     const navigate = useNavigate();
 

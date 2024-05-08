@@ -12,16 +12,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class AppUserService implements UserDetailsService {
 
     private final AppUserRepository repository;
     private final PasswordEncoder encoder;
 
-    public AppUserService(AppUserRepository repository, PasswordEncoder encoder) {
+    public AppUserService(AppUserRepository repository,
+                          PasswordEncoder encoder) {
         this.repository = repository;
         this.encoder = encoder;
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser appUser = repository.findByUsername(username);
@@ -41,7 +44,7 @@ public class AppUserService implements UserDetailsService {
 
         password = encoder.encode(password);
 
-        AppUser appUser = new AppUser(0, username, password, true, List.of("MEMBER"));
+        AppUser appUser = new AppUser(0, username, password, true, List.of("MEMBER", "ADMIN"));
 
         try {
             appUser = repository.create(appUser);

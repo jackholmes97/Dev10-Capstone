@@ -2,6 +2,7 @@ package learn.haring.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -31,6 +32,10 @@ public class SecurityConfig {
                 .antMatchers("/refresh_token").authenticated()
                 .antMatchers("/api/submissions", "/api/submissions/*", "/api/submissions/**").permitAll()
                 .antMatchers("/api/comments", "/api/comments/*", "/api/comments/**").permitAll()
+                .antMatchers("/api/appUsers", "/api/appUsers/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/**").permitAll()
+//              .antMatchers(HttpMethod.PUT, "/sighting/*").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/**").permitAll()
                 // TODO Add antMatchers here to configure access to specific API endpoints
                 .antMatchers("/**").denyAll()
                 .anyRequest().authenticated()
