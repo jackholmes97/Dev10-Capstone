@@ -112,7 +112,7 @@ export default function PostExpanded({ user, setUser, sub, submissions,setSubmis
                 <p>{sub.submissionDescription}</p>
             </div>
             <div className="demo-display">
-                <img className="demo-img" src={sub.submissionDemo} alt={sub.submissionTitle} />
+                <img className="demo-img" src={new URL(sub.submissionDemo)} alt={sub.submissionTitle} />
             </div>
             <div className="code-display">
                 <div>

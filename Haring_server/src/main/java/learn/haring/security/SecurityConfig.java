@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .antMatchers("/api/submissions", "/api/submissions/*", "/api/submissions/**", "/api/submissions/appUser/*").permitAll()
                 .antMatchers("/api/comments", "/api/comments/*", "/api/comments/**").permitAll()
                 .antMatchers("/api/appUsers", "/api/appUsers/*").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/**", "/authenticate").permitAll()
 //              .antMatchers(HttpMethod.PUT, "/sighting/*").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/api/**").permitAll()
                 // TODO Add antMatchers here to configure access to specific API endpoints

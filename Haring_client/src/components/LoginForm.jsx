@@ -37,8 +37,12 @@ export default function LoginForm({user, setUser}) {
             }),
         })
             .then((response) => {
-                return response.json();
-                throw new Error("Username or password is incorrect");
+                console.log(response);
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error("Username or password is incorrect");
+                }
             })
             .then((data) => {
                 console.log("Success:", data);
