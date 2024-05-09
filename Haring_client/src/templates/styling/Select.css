@@ -1,0 +1,64 @@
+.select-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.select-primary,
+.select-disabled {
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 2px solid blue;
+    background-color: rgb(244, 244, 244);
+    border-bottom: none;
+    border-right: none;
+    border-radius: 2.5px;
+    font-size: 1rem;
+    margin: 1rem;
+    width: 30%;
+    box-shadow: -1px -1px 10px rgba(217, 217, 217, 0.75) inset;
+    transition: outline, color, border-radius, box-shadow 0.5s ease;
+}
+.select-primary:focus,
+.select-disabled:focus {
+    outline: none;
+    color: blue;
+    border-radius: 2.5px;
+    border: 2px solid blue;
+    border-top: none;
+    border-left: none;
+    box-shadow: 5px 5px 1px rgba(0, 0, 255, 0.631);
+    transition: outline 0.75s ease, 
+              color 0.75s ease,
+              border-radius 0.75s ease,
+              box-shadow 0.75s ease;
+}
+
+.select-disabled {
+    cursor: not-allowed !important;
+    border-color: gray;
+}
+
+.select-disabled:active {
+    animation: shake 0.15s;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(0);
+    }
+    25% {
+        transform: translate(2px, 2px);
+    }
+    50% {
+        transform: translate(0px, 0px);
+    }
+    75% {
+        transform: translate(-2px, -2px);
+    }
+    100% {
+        transform: translate(0px, 0px);
+    }
+}

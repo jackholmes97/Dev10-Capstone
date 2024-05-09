@@ -72,7 +72,10 @@ public class CommentJdbcTemplateRepository implements CommentRepository {
 
     @Override
     public boolean deleteById(int commentId) {
-        final String sql = "delete from comment where comment_id = ?;";
+        final String sql = """
+                delete from comment
+                where comment_id = ?;
+           """;
         return jdbcTemplate.update(sql, commentId) > 0;
     }
 

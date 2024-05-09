@@ -1,0 +1,43 @@
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+
+.toggle-switch {
+    appearance: none;
+    width: 62px;
+    height: 32px;
+    display: inline-block;
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid #121c26;
+    cursor: pointer;
+    color: #121c26;
+    background-color: #7d8186;
+    transition: background-color ease .5s;
+}
+
+.toggle-switch::before {
+    content: 'ON';
+    position: absolute;
+    width: 30px;
+    height: 32px;
+    background-color: #121c26;
+    color: white;
+    transition: left ease .5s
+}
+
+.toggle-switch:checked {
+    background-color: #7d8186;
+    color: white;
+    transition: left .5s ease;
+}
+
+.toggle-switch:checked::before {
+    content: 'OFF';
+    color: white;
+    left: 31px;
+}

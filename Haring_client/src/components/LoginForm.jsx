@@ -73,8 +73,8 @@ export default function LoginForm({user, setUser}) {
                     <div className="register-form">
                         <h1>Register.</h1>
                         <form className="login-inputs">
-                            <input className="input-field-login" type="text" value={username} onChange={addUsername} placeholder="Username" />
-                            <input className="input-field-login" type="password" value={password} onChange={addPassword} placeholder="Password Input Field" />
+                            <input className="input-field-login" type="text" value={username} onChange={addUsername} placeholder="Username" required/>
+                            <input className="input-field-login" type="password" value={password} onChange={addPassword} placeholder="Password" required/>
                             <div className="lg-btns">
                                 <button className="login-button" type="submit">Create Account</button>
                                 <button className="login-button" type="button" onClick={handleCancel}>Cancel</button>

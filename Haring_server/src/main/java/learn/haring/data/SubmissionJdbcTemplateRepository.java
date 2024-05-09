@@ -107,7 +107,9 @@ public class SubmissionJdbcTemplateRepository implements SubmissionRepository {
                                 et.elm_type_id,
                                 et.elm_type_name,
                                 au.app_user_id,
-                                au.username
+                                au.username,
+                                au.password_hash,
+                                au.enabled
                             from submission
                             inner join elm_type et on submission.elm_type_id = et.elm_type_id
                             inner join app_user au on submission.app_user_id = au.app_user_id

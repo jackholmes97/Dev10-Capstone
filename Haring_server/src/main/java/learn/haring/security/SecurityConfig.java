@@ -30,7 +30,7 @@ public class SecurityConfig {
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers("/create_account").permitAll()
                 .antMatchers("/refresh_token").authenticated()
-                .antMatchers("/api/submissions", "/api/submissions/*", "/api/submissions/**").permitAll()
+                .antMatchers("/api/submissions", "/api/submissions/*", "/api/submissions/**", "/api/submissions/appUser/*").permitAll()
                 .antMatchers("/api/comments", "/api/comments/*", "/api/comments/**").permitAll()
                 .antMatchers("/api/appUsers", "/api/appUsers/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/**").permitAll()

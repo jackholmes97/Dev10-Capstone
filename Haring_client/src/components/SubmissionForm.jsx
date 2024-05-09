@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function SubmissionForm({submissions, setSubmissions}) {
+export default function SubmissionForm({submissions, setSubmissions, posterId, authorities}) {
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
