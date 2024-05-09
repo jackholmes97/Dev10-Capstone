@@ -1,4 +1,4 @@
-import '../styles/Select.css';
+import '../styling/Select.css';
 
 export default function Select() {
     return (

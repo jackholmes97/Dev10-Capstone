@@ -1,4 +1,4 @@
-import '../styles/Range.css';
+import '../styling/Range.css';
 
 export default function Range() {    
     return (

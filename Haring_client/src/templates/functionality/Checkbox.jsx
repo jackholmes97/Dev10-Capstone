@@ -1,4 +1,4 @@
-import '../styles/Checkbox.css'
+import '../styling/Checkbox.css'
 
 export default function Checkbox() {
     return (

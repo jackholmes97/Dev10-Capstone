@@ -1,4 +1,4 @@
-import '../styles/Button.css'
+import '../styling/Button.css'
 export default function Button() {
     return  ( 
         <div className="btn-container">

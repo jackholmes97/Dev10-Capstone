@@ -2,7 +2,11 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    margin-top: 30px;
+    padding: 30px;
+    background-color: whitesmoke;
+    border: 2px solid tomato;
+    height: 20%;
+    width: 100%;
 }
 
 .toggle-switch {
@@ -16,8 +20,9 @@
     border: 1px solid #121c26;
     cursor: pointer;
     color: #121c26;
-    background-color: #7d8186;
+    background-color: #2a5f2c;
     transition: background-color ease .5s;
+    box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
 .toggle-switch::before {
@@ -25,13 +30,14 @@
     position: absolute;
     width: 30px;
     height: 32px;
-    background-color: #121c26;
+    background-color: green;
     color: white;
-    transition: left ease .5s
+    transition: left ease .5s;
+    padding-left: 1.25px;
 }
 
 .toggle-switch:checked {
-    background-color: #7d8186;
+    background-color: #ce4040;
     color: white;
     transition: left .5s ease;
 }
@@ -39,5 +45,6 @@
 .toggle-switch:checked::before {
     content: 'OFF';
     color: white;
+    background-color: red;
     left: 31px;
 }

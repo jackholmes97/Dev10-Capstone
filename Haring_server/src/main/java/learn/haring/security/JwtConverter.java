@@ -15,7 +15,7 @@ public class JwtConverter {
 
     private Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     private final String ISSUER = "haring";
-    private final int EXPIRATION_MINUTES = 15;
+    private final int EXPIRATION_MINUTES = 50;
     private final int EXPIRATION_MILLIS = EXPIRATION_MINUTES * 60 * 1000;
 
     public String getTokenFromUser(AppUser user) {

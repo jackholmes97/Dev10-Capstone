@@ -1,7 +1,11 @@
 .btn-container {
     display: flex;
     justify-content: space-evenly;
-    margin-top: 20%;
+    padding: 30px;
+    background-color: whitesmoke;
+    border: 2px solid tomato;
+    height: 20%;
+    width: 100%;
 
 }
 /* Primary Button Styling */

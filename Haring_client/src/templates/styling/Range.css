@@ -1,9 +1,14 @@
 .range-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 1.5%;
+
+    background-color: whitesmoke;
+    border: 2px solid tomato;
+    height: 20%;
+    width: 100%;
 }
 
 .range-primary,
@@ -14,6 +19,10 @@
     margin-bottom: 30px;
 }
 
+.range-primary {
+    margin-bottom: 3%;
+}
+
 .range-primary::-webkit-slider-runnable-track,
 .range-disabled::-webkit-slider-runnable-track {
     width: 100%;
@@ -22,8 +31,9 @@
     animation: 0.2s;
     border-radius: 50px;
     background: rgb(183, 183, 183);
-    
+
 }
+
 .range-primary::-webkit-slider-thumb,
 .range-disabled::-webkit-slider-thumb {
     border: 2px solid blue;
@@ -37,6 +47,7 @@
     margin-top: -9px;
     transition: all 0.5s ease;
 }
+
 .range-disabled::-webkit-slider-thumb {
     border: 2px solid gray;
     cursor: not-allowed !important;
@@ -62,5 +73,3 @@
 .range-primary::-webkit-slider-runnable-track:hover {
     transition: all 0.2s ease;
 }
-
-

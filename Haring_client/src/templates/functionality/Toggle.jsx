@@ -1,4 +1,4 @@
-import '../styles/Toggle.css'
+import '../styling/Toggle.css'
 
 export default function Toggle() {
     return (
